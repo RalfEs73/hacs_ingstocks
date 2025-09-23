@@ -26,5 +26,5 @@ Füge in deiner `configuration.yaml` folgenden Abschnitt hinzu:
 sensor:
   - platform: ingstocks
     isin: "DE000BASF111"
-	scan_interval: 300  # Optional - Alle 5 Minuten (300 Sekunden)
+    scan_interval: 300  # Optional - Alle 5 Minuten (300 Sekunden)
 ```
