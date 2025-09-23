@@ -8,7 +8,6 @@ Mit dieser benutzerdefinierten Integration kannst du Aktienkurse von ING direkt 
 - Anzeige von Preis, Währung, Kursänderung und weiteren Attributen
 - Unterstützung für mehrere Aktien (ISINs)
 - Automatische Aktualisierung (z. B. alle 5 Minuten)
-- Passendes Icon (`mdi:euro`) und device_class (`monetary`)
 
 ## Installation
 
@@ -19,6 +18,7 @@ Starte Home Assistant neu.
 
 ## Konfiguration
 
+Suche nach dem ISIN Code auf https://www.ing.de/
 Füge in deiner `configuration.yaml` folgenden Abschnitt hinzu:
 
 ```yaml
