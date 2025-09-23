@@ -4,7 +4,7 @@ Mit dieser benutzerdefinierten Integration kannst du Aktienkurse von ING direkt 
 
 ## Features
 
-- Abruf von Aktienkursen per REST-API (ING)
+- Abruf von Aktienkursen über ING
 - Anzeige von Preis, Währung, Kursänderung und weiteren Attributen
 - Unterstützung für mehrere Aktien (ISINs)
 - Automatische Aktualisierung (z. B. alle 5 Minuten)
