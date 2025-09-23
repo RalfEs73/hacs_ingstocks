@@ -24,6 +24,10 @@ class INGStocksSensor(Entity):
         return "monetary"
 
     @property
+    def unit_of_measurement(self):
+        return "€"
+
+    @property
     def icon(self):
         return "mdi:currency-eur"
 
@@ -52,7 +56,7 @@ class INGStocksSensor(Entity):
                         _LOGGER.warning("Kein Preis für ISIN %s gefunden!", self._isin)
                         self._state = "unavailable"
                         return
-                    self._state = price
+                    self._state = round(price, 2)
                     self._attributes = {
                         "name": data.get("name"),
                         "isin": data.get("isin"),
