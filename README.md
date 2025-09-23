@@ -12,10 +12,8 @@ Mit dieser benutzerdefinierten Integration kannst du Aktienkurse von ING direkt 
 ## Installation
 
 Die empfohlene Methode ist die Installation über HACS.
-
-[![Open your Home Assistant instance and open the ING Stocks custom component repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=RalfEs73&repository=hacs_ingstocks)
-
-Starte Home Assistant neu.
+1. Repro einbinden
+2. Starte Home Assistant neu.
 
 ## Konfiguration
 
