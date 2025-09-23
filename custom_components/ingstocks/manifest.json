@@ -1,0 +1,10 @@
+{
+  "domain": "ingstocks",
+  "name": "ING Stocks",
+  "documentation": "https://github.com/RalfEs73/hacs_ingstocks",
+  "requirements": [],
+  "dependencies": [],
+  "codeowners": ["@RalfEs73"],
+  "version": "0.0.1"
+
+}

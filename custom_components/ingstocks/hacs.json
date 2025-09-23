@@ -1,0 +1,8 @@
+{
+  "name": "Funfacts",
+  "content_in_root": false,
+  "domain": "funfacts",
+  "render_readme": true,
+  "country": ["EN", "DE"],
+  "zip_release": false
+}
