@@ -25,5 +25,6 @@ Füge in deiner `configuration.yaml` folgenden Abschnitt hinzu:
 sensor:
   - platform: ingstocks
     isin: "DE000BASF111"
-    # name: "BASF Aktie" # Optional: name überschreiben
+    name: "BASF Aktie" # Optional - Name überschreiben
+	scan_interval: 300  # Optional - Alle 5 Minuten (300 Sekunden)
 ```
