@@ -20,6 +20,7 @@ Starte Home Assistant neu.
 ## Konfiguration
 
 Suche nach dem ISIN Code auf https://www.ing.de/
+
 Füge in deiner `configuration.yaml` folgenden Abschnitt hinzu:
 
 ```yaml
