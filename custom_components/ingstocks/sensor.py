@@ -1,32 +1,35 @@
-import requests
-import voluptuous as vol
-from homeassistant.components.sensor import SensorEntity
-from homeassistant.const import CONF_NAME
-import homeassistant.helpers.config_validation as cv
-from .const import DOMAIN, DEFAULT_NAME
+import logging
+import aiohttp
+from homeassistant.helpers.entity import Entity
 
-CONF_ISIN = "isin"
+_LOGGER = logging.getLogger(__name__)
 
-PLATFORM_SCHEMA = vol.Schema({
-    vol.Required(CONF_ISIN): cv.string,
-    vol.Optional(CONF_NAME, default=DEFAULT_NAME): cv.string,
-})
+DOMAIN = "ingstocks"
 
-def setup_platform(hass, config, add_entities, discovery_info=None):
-    isin = config[CONF_ISIN]
-    name = config.get(CONF_NAME)
-    add_entities([StockSensor(name, isin)], True)
+async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
+    isin = config.get("isin")
+    if not isin:
+        _LOGGER.error("Keine ISIN angegeben!")
+        return
+    async_add_entities([INGStocksSensor(isin)], True)
 
-class StockSensor(SensorEntity):
-    def __init__(self, name, isin):
-        self._name = name
+class INGStocksSensor(Entity):
+    def __init__(self, isin):
         self._isin = isin
         self._state = None
         self._attributes = {}
 
     @property
+    def device_class(self):
+        return "monetary"
+
+    @property
+    def icon(self):
+        return "mdi:currency-eur"
+
+    @property
     def name(self):
-        return self._name
+        return f"ING Stocks {self._isin}"
 
     @property
     def state(self):
@@ -36,20 +39,30 @@ class StockSensor(SensorEntity):
     def extra_state_attributes(self):
         return self._attributes
 
-    def update(self):
+    async def async_update(self):
         url = f"https://component-api.wertpapiere.ing.de/api/v1/components-ng/instrumentheader/{self._isin}"
-        response = requests.get(url)
-        if response.status_code == 200:
-            data = response.json()
-            self._state = data.get("price")
-            self._attributes = {
-                "name": data.get("name"),
-                "isin": data.get("isin"),
-                "currency": data.get("currencySign"),
-                "change_percent": data.get("changePercent"),
-                "change_absolute": data.get("changeAbsolute"),
-                "exchange": data.get("exchangeName"),
-                "last_update": data.get("priceChangeDate"),
-            }
-        else:
-            self._state = None
+        _LOGGER.debug("Rufe API auf: %s", url)
+        try:
+            async with aiohttp.ClientSession() as session:
+                async with session.get(url) as response:
+                    data = await response.json()
+                    _LOGGER.debug("API Antwort: %s", data)
+                    price = data.get("price")
+                    if price is None:
+                        _LOGGER.warning("Kein Preis für ISIN %s gefunden!", self._isin)
+                        self._state = "unavailable"
+                        return
+                    self._state = price
+                    self._attributes = {
+                        "name": data.get("name"),
+                        "isin": data.get("isin"),
+                        "currency": data.get("currencySign"),
+                        "change_percent": round(data.get("changePercent", 0), 2),
+                        "change_absolute": data.get("changeAbsolute"),
+                        "exchange": data.get("exchangeName"),
+                        "last_update": data.get("priceChangeDate"),
+                    }
+        except Exception as e:
+            _LOGGER.error("Fehler beim Abrufen der Aktie %s: %s", self._isin, e)
+            self._state = "unavailable"
+            self._attributes = {}

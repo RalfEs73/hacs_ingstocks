@@ -1,8 +1,7 @@
 {
-  "name": "Funfacts",
+  "name": "ING Stocks",
   "content_in_root": false,
-  "domain": "funfacts",
+  "domain": "ingstocks",
   "render_readme": true,
-  "country": ["EN", "DE"],
   "zip_release": false
 }

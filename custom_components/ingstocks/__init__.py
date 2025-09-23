@@ -1,2 +1,3 @@
-# custom_components/ingstocks/__init__.py
-from .const import DOMAIN
+async def async_setup(hass, config):
+    """Set up the Funfacts component."""
+    return True
