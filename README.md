@@ -12,7 +12,7 @@ Mit dieser benutzerdefinierten Integration kannst du Aktienkurse von ING direkt 
 ## Installation
 
 Die empfohlene Methode ist die Installation über HACS.
-1. Repro einbinden
+1. Benutzerdefinierte Repositorie
 2. Starte Home Assistant neu.
 
 ## Konfiguration
