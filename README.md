@@ -1,3 +1,6 @@
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
+[![GitHub release](https://img.shields.io/github/release/RalfEs73/hacs_ingstocks.svg)](https://github.com/RalfEs73/hacs_ingstocks/releases)
+
 # ING Stocks Home Assistant Integration
 
 Mit dieser benutzerdefinierten Integration kannst du Aktienkurse von ING direkt als Sensor in Home Assistant einbinden.
