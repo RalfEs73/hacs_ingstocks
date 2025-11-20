@@ -44,7 +44,7 @@ class INGStocksSensor(Entity):
         return self._attributes
 
     async def async_update(self):
-        url = f"https://component-api.wertpapiere.ing.de/api/v1/components-ng/instrumentheader/{self._isin}"
+        url = f"https://component-api.wertpapiere.ing.de/api/v1/components/instrumentheader/{self._isin}"
         _LOGGER.debug("Rufe API auf: %s", url)
         try:
             async with aiohttp.ClientSession() as session:
